@@ -12,3 +12,9 @@ TEST(ActivityTest, ToggleStatus) {
     task.setCompleted(true);
     EXPECT_TRUE(task.isCompleted());
 }
+
+TEST(ActivityTest, DateHandling) {
+    Activity task("Esame C++", "15/02/2025");
+    EXPECT_EQ(task.getDescription(), "Esame C++");
+    EXPECT_EQ(task.getDueDate(), "15/02/2025");
+}

@@ -43,7 +43,14 @@ int main() {
                 } else {
                     for (size_t i = 0; i < activities.size(); ++i) {
                         std::string status = activities[i].isCompleted() ? "[X]" : "[ ]";
+                        std::string date = activities[i].getDueDate();
+
                         std::cout << i + 1 << ". " << status << " " << activities[i].getDescription() << "\n";
+
+                        if (!date.empty()) {
+                            std::cout << " (Scadenza: " << date << ")";
+                        }
+                        std::cout << "\n";
                     }
                 }
                 break;
@@ -52,9 +59,13 @@ int main() {
                 std::cout << "Inserisci descrizione: ";
                 std::string desc;
                 std::getline(std::cin, desc);
+                    std::cout << "Inserisci data scadenza (es. 31/12/2024) o premi Invio per vuota: ";
+                    std::string date;
+                    std::getline(std::cin, date);
+
                 if (!desc.empty()) {
-                    manager.addActivity(desc);
-                    std::cout << "Attivita' aggiunta.\n";
+                    manager.addActivity(desc, date);
+                    std::cout << "Attivita' aggiunta. \n";
                 }
                 break;
             }

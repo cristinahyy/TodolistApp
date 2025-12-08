@@ -14,6 +14,7 @@ public:
 
     void saveToFile(const std::string& filename);
     void loadFromFile(const std::string& filename);
+    void addActivity(const std::string& desc, const std::string& date);
 
 private:
     std::vector<Activity> activities;

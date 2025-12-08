@@ -17,7 +17,8 @@ TEST(TodolistTest, AddAndRemove) {
 
 TEST(TodolistTest, Persistence) {
     Todolist manager;
-    manager.addActivity("Save Me");
+    manager.addActivity("Paga affitto", "01/01/2024");
+    manager.addActivity("Nessuna scadenza", "");
     manager.getActivities()[0].setCompleted(true);
 
     std::string testFile = "test_data.txt";
@@ -27,6 +28,10 @@ TEST(TodolistTest, Persistence) {
     newManager.loadFromFile(testFile);
 
     auto list = newManager.getActivities();
-    EXPECT_EQ(list.size(), 1);
-    EXPECT_EQ(list[0].getDescription(), "Save Me");
+    EXPECT_EQ(list.size(), 2);
+    EXPECT_EQ(list[0].getDescription(), "Paga affitto");
+    EXPECT_EQ(list[0].getDueDate(), "01/01/2024");
+
+    EXPECT_EQ(list[1].getDescription(), "Nessuna scadenza");
+    EXPECT_EQ(list[1].getDueDate(), "");
 }
