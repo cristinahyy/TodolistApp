@@ -62,16 +62,28 @@ int main() {
                 std::cout << "Inserisci il numero dell'attivita' da modificare: ";
                 int index;
                 std::cin >> index;
-                manager.markCompleted(index - 1);
-                std::cout << "Stato aggiornato.\n";
+
+                int listSize = manager.getActivities().size();
+                if (index > 0 && index <= listSize) {
+                    manager.markCompleted(index - 1);
+                    std::cout << "Stato aggiornato con successo.\n";
+                } else {
+                    std::cout << "ERRORE: Indice non trovato. Inserisci un numero tra 1 e " << listSize << ".\n";
+                }
                 break;
             }
             case 4: {
                 std::cout << "Inserisci il numero dell'attivita' da rimuovere: ";
                 int index;
                 std::cin >> index;
-                manager.removeActivity(index - 1);
-                std::cout << "Attivita' rimossa.\n";
+
+                int listSize = manager.getActivities().size();
+                if (index > 0 && index <= listSize) {
+                        manager.removeActivity(index - 1);
+                        std::cout << "Attivita' rimossa.\n";
+                    } else {
+                        std::cout << "ERRORE: Impossibile rimuovere. Indice non valido.\n";
+                    }
                 break;
             }
             case 5: {
